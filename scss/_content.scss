@@ -1,0 +1,40 @@
+.mangaIvrea{
+    grid-column-gap: 40px;
+    grid-row-gap: 20px;
+    text-align: center;   
+    color:red;
+    p{
+        color: black;
+        font-weight: bold;
+    }
+}
+
+.mangaPanini{
+    @extend .mangaIvrea;
+    color:blue;
+}
+
+.merch{
+    @extend .mangaIvrea;
+    color:green;
+}
+
+.tcg{
+    @extend .mangaIvrea;
+    color:green;
+}
+    
+.fig{
+    flex-direction: column;
+    text-align: center;
+    @include textos(darkorange ,500);
+}
+
+.banner{
+    text-align: center;
+    @include textos(darkorange ,500);
+}
+    
+main{
+    flex-wrap: wrap;
+}

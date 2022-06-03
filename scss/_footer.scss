@@ -1,0 +1,42 @@
+.social{
+    color: black;
+    font-weight: bold;
+
+    .whatsapp {
+        position:fixed;
+        width:60px;
+        height:60px;
+        bottom:40px;
+        right:40px;
+        background-color:#25d366;
+        color:#FFF;
+        border-radius:50px;
+        text-align:center;
+        font-size:30px;
+        z-index:999;
+        
+      }
+
+      .whatsapp-icon {
+        margin-top:13px;
+      }
+    
+    .links {
+        display: map-get($map: $estilos, $key:'posicion' );
+        margin: map-get($map: $estilos, $key: 'margen');
+        justify-content: map-get($map: $estilos, $key: 'contenido');
+        text-align: map-get($map: $estilos, $key: 'centro');
+        font-size: map-get($map: $estilos, $key: 'letra');
+        padding: map-get($map: $estilos, $key: 'relleno');
+    }
+}
+
+footer{
+    background: rgb(249,255,223);
+    background: linear-gradient(177deg, rgba(249,255,223,0.30575980392156865) 26%, rgba(248,254,179,0.14889705882352944) 35%, rgba(251,245,159,0.9360119047619048) 85%);
+}
+
+
+  
+ 
+

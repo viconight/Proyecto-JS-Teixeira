@@ -1,0 +1,10 @@
+$mainColor:darkorange;
+$secondColor:black;
+$thirdColor:white;
+$fourColor:grey;
+$fiveColor:blue;
+
+@mixin textos($color ,$fontW){
+    color:$color;
+    font-weight: $fontW;
+}

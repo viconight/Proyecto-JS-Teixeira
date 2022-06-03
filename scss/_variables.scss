@@ -1,0 +1,20 @@
+$redes:(
+        twitter:  #18b8ee,
+        facebook:   #0000ff,
+        instagram:  #bd16bd,
+        );
+
+        @each $red, $color in $redes {
+            .#{$red} {
+                color: $color;
+            }
+         }
+
+$estilos: (
+    'margen':50px,
+    'centro':center,
+    'posicion':flex,
+    'contenido':center,
+    'letra':50px,
+    'relleno': 30px,
+)
