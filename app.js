@@ -1,85 +1,104 @@
-class Manga {
-    constructor (manga) {
- 
-       this.id = manga.id;
-       this.nombre = manga.nombre;
-       this.editorial = manga.editorial;
-       this.precio = manga.precio;
-       this.formato = manga.formato;
-       this.cantidad = 1;
-       this.precioTotal = +manga.precio;
-    
-    }
- 
-    agregarManga () {
-    this.cantidad++;
-    }
- 
-    quitarManga(){
-       this.cantidad--;
- 
-    }
- 
-    actualizarPrecioTotal(){
-       this.precioTotal * this.cantidad;
-    }
- 
- }
- 
- const mangas = [{id:'0', nombre: 'one piece', editorial: 'editorial ivrea',precio: 750,formato: 'tankoubon chico'},
- {id:'1',nombre: 'shaman king',editorial: 'editorial ivrea',precio: 1550,formato: 'B6 doble'},
- {id:'2',nombre: 'hellsing',editorial: 'editorial ivrea',precio: 750,formato: 'tankoubon chico'},
- {id:'3',nombre: 'noragami',editorial: 'editorial panini',precio: 750,formato: 'tankoubon chico'},
- {id:'4',nombre: 'negima',editorial: 'editorial panini',precio: 1100,formato: 'B6 doble'},
- {id:'5',nombre: 'pokemon',editorial: 'editorial panini',precio: 750 ,formato: 'tankoubon chico'}]
- 
- 
- let carrito=[]
- let sumaTotal
- 
- function menuDeCompras() {
-    let stringsProductos = ""
- 
-    for (const manga of mangas){
-       stringsProductos+= `${manga.id} : ${manga.nombre} $ ${manga.precio} \n`;
-    }
-     let idProducto = prompt(`Escriba el Numero para comprar un Manga o ESC para salir:\n${stringsProductos}\n `);
- 
-      while (idProducto!== "ESC" ){
-         let mangaEnCarrito = carrito.find((elemento) => elemento.id == idProducto);
- 
-         if (mangaEnCarrito) {
-            let index = carrito.findIndex((elemento) => elemento.id === mangaEnCarrito.id);
- 
-            carrito [index ].agregarManga ();
-            carrito [index].actualizarPrecioTotal()
- 
-            alert (`Se añadio otra unidad del Manga seleccionado ${carrito[index].nombre}`);
- 
-            console.table(carrito);
-         } else {
-          carrito.push(new Manga (mangas[idProducto]));;
- 
-            alert  (`Se agrego al carrito el Manga ${mangas[idProducto].nombre} `)
-         }
- 
-         idProducto = prompt (`Desea seguir comprando Mangas? Escribra el Numero para seleccionar otro o escriba ESC para salir\n${stringsProductos}`);
-      }
- }
- 
- function sumarPrecioTotal() {
-    let precioTotal = 0;
-    for (const mangas of carrito) {
-        precioTotal += mangas.precioTotal;
-    }
- 
-    return precioTotal;
- }
- 
- menuDeCompras();
- precioTotal = sumarPrecioTotal();
- 
- alert(`El precio total de tu compra es de $${precioTotal}`);
- 
- console.log(carrito)
- 
+const mangas = [{
+   id : "0",
+   nombre:'One Piece',
+   editorial:'Ivrea',
+   imagen:"media/onepiece.png",
+   precio:750,
+},
+{
+   id : "1",
+   nombre:'Hunter x Hunter', 
+   editorial:'Ivrea',
+   imagen:"media/hunter.png",
+   precio: 750,
+},
+{
+   id : "2",
+   nombre:'Shaman King',  
+   editorial:'Ivrea',
+   imagen:"media/shaman.png",
+   precio: 1550,
+},
+{   
+   id : "3",
+   nombre:'Yu Yu Hakusho',  
+   editorial:'Ivrea',
+   imagen:"media/yuyu.png",
+   precio: 2000,
+},
+{
+   id : "4",
+   nombre:'Pandora Hearts', 
+   editorial:'Ivrea',
+   imagen:"media/pandora.png",
+   precio: 850,
+},
+{
+   id : "5",
+   nombre:'Fullmetal Alchemist', 
+   editorial:'Ivrea',
+   imagen:"media/fullmetal.png",
+   precio: 750,
+},
+{
+   id : "6",
+   nombre:'Inuyasha', 
+   editorial:'Ivrea',
+   imagen:"media/inuyasha.png",
+   precio: 1450,
+},
+{
+   id : "7",
+   nombre:'Spy x Family', 
+   editorial:'Ivrea',
+   imagen:"media/spyxfamily.png",
+   precio: 750,
+},
+]
+
+let carrito=[]
+
+imprimirProductosEnHTML(mangas)
+
+function imprimirProductosEnHTML(mangas) {
+  let mangaIvrea = document.getElementById("mangaIvrea");
+
+  for (const manga of mangas) {
+    let card = document.createElement("div");
+
+    card.innerHTML =`
+    <div class="card" >
+           <div class="card-body">
+               <img src="${manga.imagen}" class="card-img-top" alt="" width="200" height="270">
+               <h5 class="card-title">${manga.nombre}</h5>
+               <p class="card-text">$${manga.precio}</p>
+               <div class="btn-group" role="group" aria-label="Basic mixed styles example">
+               <button id="btn${manga.id}" type="button" class="btn btn-dark">Agregar al carrito </button>
+               </div>
+           </div>
+       </div> 
+        `
+    mangaIvrea.append(card)
+  }
+
+  mangas.forEach(manga => {
+   document.getElementById(`btn${manga.id}`).addEventListener('click', function() {
+      agregarAlCarrito(manga);
+    });
+  });
+
+}
+
+function agregarAlCarrito(nuevoManga) {
+   carrito.push(nuevoManga);
+   console.log(carrito);
+   alert("Agregamos el Manga "+nuevoManga.nombre+" al carrito!")
+   document.getElementsByClassName("mangas").innerHTML+=`
+   <tr>
+       <td>${nuevoManga.nombre}</td>
+       <td>${nuevoManga.precio}</td>
+       <td>${nuevoManga.imagen}</td>
+   </tr>`;
+}
+
+
