@@ -1,4 +1,6 @@
 .mangaIvrea{
+    display: flex;
+    flex-wrap: wrap;
     grid-column-gap: 40px;
     grid-row-gap: 20px;
     text-align: center;   
@@ -12,6 +14,10 @@
 .mangaPanini{
     @extend .mangaIvrea;
     color:blue;
+}
+
+.carritoCompras{
+    text-align: center
 }
 
 .merch{

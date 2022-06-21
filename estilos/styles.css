@@ -47,6 +47,8 @@ body {
   color: #bd16bd; }
 
 .mangaIvrea, .mangaPanini, .merch, .tcg {
+  display: flex;
+  flex-wrap: wrap;
   grid-column-gap: 40px;
   grid-row-gap: 20px;
   text-align: center;
@@ -57,6 +59,9 @@ body {
 
 .mangaPanini {
   color: blue; }
+
+.carritoCompras {
+  text-align: center; }
 
 .merch {
   color: green; }
