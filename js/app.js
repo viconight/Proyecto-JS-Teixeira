@@ -1,7 +1,7 @@
 const allMangas = mangas
 
 let carrito=[]
-
+let productosJSON = [];
 
 class Manga{
   constructor(manga) {
@@ -15,14 +15,21 @@ class Manga{
 
 }
 
+if(localStorage.getItem("carrito")!=null){
+  carrito=JSON.parse(localStorage.getItem("carrito"));
+  actualizarTabla()
+}else{
+  carrito=[]
+}
 
 
 imprimirProductosEnHTML(mangas)
 
-function imprimirProductosEnHTML(mangas) {
+function imprimirProductosEnHTML() {
+  console.log(productosJSON)
   let mangaIvrea = document.getElementById("mangaIvrea");
 
-  for (const manga of mangas) {
+  for (const manga of productosJSON) {
     let card = document.createElement("div");
 
     card.innerHTML =`
@@ -40,7 +47,7 @@ function imprimirProductosEnHTML(mangas) {
     mangaIvrea.append(card)
   }
 
-  for (const manga of mangas) {
+  for (const manga of productosJSON) {
     document.getElementById(`btn${manga.id}`).addEventListener('click', function() {
        agregarAlCarrito(manga);
      });
@@ -48,12 +55,6 @@ function imprimirProductosEnHTML(mangas) {
 
 }
 
-if(localStorage.getItem("carrito")!=null){
-  carrito=JSON.parse(localStorage.getItem("carrito"));
-  actualizarTabla()
-}else{
-  carrito=[]
-}
 
 
 function agregarAlCarrito(nuevoManga) {
@@ -147,4 +148,20 @@ function eliminarFila(){
    localStorage.setItem("carrito",JSON.stringify(carrito))
    document.querySelector("#precioTotal").innerText=(`Total: $ ${calcularTotal()}`);
 
+}
+document.addEventListener(`DOMContentLoaded`, ()  =>{
+  fechtData()
+  console.log(fechtData)
+})
+
+const fechtData= async ()=>{
+try {
+  const URLJSON="/objetos.json"
+  const resp=await fetch("objetos.json")
+  const data= await resp.json()
+  productosJSON = data;
+  imprimirProductosEnHTML();
+}catch (error){
+  console.log(error)
+}
 }
