@@ -75,6 +75,19 @@ body {
   color: darkorange;
   font-weight: 500; }
 
+.subTitulo {
+  text-align: center;
+  transform: translateY(60px); }
+  .subTitulo h2 {
+    color: darkorange; }
+  .subTitulo p {
+    color: black;
+    font-weight: bold; }
+
+.social h3 {
+  color: darkorange;
+  transform: translateY(80px); }
+
 .banner {
   text-align: center;
   color: darkorange;
@@ -82,6 +95,10 @@ body {
 
 main {
   flex-wrap: wrap; }
+
+#contacto a {
+  text-decoration: none;
+  color: black; }
 
 .social {
   color: black;
